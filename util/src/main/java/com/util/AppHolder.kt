@@ -1,6 +1,7 @@
 package com.util
 
 import android.app.Application
+import android.content.Context
 
 /**
  * 添加人：  Tom Hawk
@@ -20,5 +21,9 @@ object AppHolder {
 
     fun app(): Application {
         return application
+    }
+
+    fun appContext(): Context {
+        return application.applicationContext
     }
 }
