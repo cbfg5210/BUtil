@@ -1,9 +1,6 @@
 package com.util
 
 import android.content.pm.ApplicationInfo
-import android.os.Handler
-import android.os.Looper
-import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 

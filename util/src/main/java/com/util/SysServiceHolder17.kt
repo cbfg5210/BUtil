@@ -1,22 +1,9 @@
 package com.util
 
-import android.annotation.SuppressLint
-import android.app.*
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.wifi.WifiManager
-import android.os.BatteryManager
-import androidx.core.content.ContextCompat.getSystemService
-import android.location.LocationManager
-import android.media.AudioManager
-import android.os.Vibrator
-import android.telephony.TelephonyManager
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import android.app.job.JobScheduler
+import android.content.Context
+import android.os.BatteryManager
 import android.os.Build
-import android.os.PowerManager
-import android.view.WindowManager
 import androidx.annotation.RequiresApi
 
 
