@@ -10,6 +10,7 @@ import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.os.PowerManager
 import android.os.Vibrator
+import android.os.storage.StorageManager
 import android.telephony.TelephonyManager
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -104,5 +105,10 @@ object SysServiceHolder {
     //传感器管理
     val sensorManager: SensorManager by lazy {
         AppHolder.appContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    }
+
+    //存储管理
+    val storageManager: StorageManager by lazy {
+        AppHolder.appContext().getSystemService(Context.STORAGE_SERVICE) as StorageManager
     }
 }
