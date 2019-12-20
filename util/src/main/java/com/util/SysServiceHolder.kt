@@ -3,6 +3,7 @@ package com.util
 import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
+import android.content.pm.PackageManager
 import android.hardware.SensorManager
 import android.location.LocationManager
 import android.media.AudioManager
@@ -110,5 +111,10 @@ object SysServiceHolder {
     //存储管理
     val storageManager: StorageManager by lazy {
         AppHolder.appContext().getSystemService(Context.STORAGE_SERVICE) as StorageManager
+    }
+
+    //安装包管理
+    val pkgManager: PackageManager by lazy {
+        AppHolder.appContext().packageManager
     }
 }
