@@ -1,5 +1,6 @@
 package com.util
 
+import android.app.Application
 import android.content.Context
 
 /**
@@ -12,13 +13,13 @@ import android.content.Context
  * 修改内容：
  */
 object AppHolder {
-    private lateinit var appContext: Context
+    private lateinit var app: Application
 
-    fun init(context: Context) {
-        this.appContext = context.applicationContext
+    fun init(context: Application) {
+        this.app = context
     }
 
-    fun appContext(): Context {
-        return appContext
+    fun app(): Context {
+        return app
     }
 }

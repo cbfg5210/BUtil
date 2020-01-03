@@ -15,7 +15,7 @@ import androidx.annotation.StringRes
  */
 object ToastUtils {
     private val toast: Toast by lazy {
-        Toast.makeText(AppHolder.appContext(), "", Toast.LENGTH_SHORT)
+        Toast.makeText(AppHolder.app(), "", Toast.LENGTH_SHORT)
     }
 
     fun message(msg: String): ToastUtils {
@@ -39,14 +39,14 @@ object ToastUtils {
     }
 
     fun debugShowShort() {
-        val isDebug = AppHolder.appContext().applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        val isDebug = AppHolder.app().applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
         if (isDebug) {
             showShort()
         }
     }
 
     fun debugShowLong() {
-        val isDebug = AppHolder.appContext().applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        val isDebug = AppHolder.app().applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
         if (isDebug) {
             showLong()
         }
