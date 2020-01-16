@@ -33,7 +33,6 @@ import javax.xml.transform.stream.StreamSource
 object KLog {
     private val LINE_SEPARATOR = System.getProperty("line.separator")
     private const val NULL_TIPS = "Log with null object"
-    private const val DEFAULT_MESSAGE = "execute"
     private const val TAG_DEFAULT = "KLog"
     private const val FILE_PREFIX = "KLog_"
     private const val FILE_FORMAT = ".log"
@@ -74,14 +73,6 @@ object KLog {
         }
     }
 
-    /*
-     * base
-     * */
-    @JvmStatic
-    fun v() {
-        printLog(V, null, DEFAULT_MESSAGE)
-    }
-
     @JvmStatic
     fun v(msg: Any) {
         printLog(V, null, msg)
@@ -90,11 +81,6 @@ object KLog {
     @JvmStatic
     fun v(tag: String, objects: Any) {
         printLog(V, tag, objects)
-    }
-
-    @JvmStatic
-    fun d() {
-        printLog(D, null, DEFAULT_MESSAGE)
     }
 
     @JvmStatic
@@ -108,11 +94,6 @@ object KLog {
     }
 
     @JvmStatic
-    fun i() {
-        printLog(I, null, DEFAULT_MESSAGE)
-    }
-
-    @JvmStatic
     fun i(msg: Any) {
         printLog(I, null, msg)
     }
@@ -120,11 +101,6 @@ object KLog {
     @JvmStatic
     fun i(tag: String, objects: Any) {
         printLog(I, tag, objects)
-    }
-
-    @JvmStatic
-    fun w() {
-        printLog(W, null, DEFAULT_MESSAGE)
     }
 
     @JvmStatic
@@ -138,11 +114,6 @@ object KLog {
     }
 
     @JvmStatic
-    fun e() {
-        printLog(E, null, DEFAULT_MESSAGE)
-    }
-
-    @JvmStatic
     fun e(msg: Any) {
         printLog(E, null, msg)
     }
@@ -150,11 +121,6 @@ object KLog {
     @JvmStatic
     fun e(tag: String, objects: Any) {
         printLog(E, tag, objects)
-    }
-
-    @JvmStatic
-    fun a() {
-        printLog(A, null, DEFAULT_MESSAGE)
     }
 
     @JvmStatic
@@ -228,11 +194,6 @@ object KLog {
     @JvmStatic
     fun file(tag: String, targetDirectory: File, fileName: String, msg: Any) {
         printFile(tag, targetDirectory, fileName, msg)
-    }
-
-    @JvmStatic
-    fun debug() {
-        printDebug(null, DEFAULT_MESSAGE)
     }
 
     @JvmStatic
