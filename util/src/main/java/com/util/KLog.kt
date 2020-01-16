@@ -31,7 +31,7 @@ import javax.xml.transform.stream.StreamSource
  * 16/6/15  扩展功能，添加不能关闭的KLog.debug(),用于发布版本的Log打印,优化部分代码
  */
 object KLog {
-    private val LINE_SEPARATOR = System.getProperty("line.separator")
+    private const val LINE_SEPARATOR = "/"
     private const val NULL_TIPS = "Log with null object"
     private const val TAG_DEFAULT = "KLog"
     private const val FILE_PREFIX = "KLog_"
@@ -55,112 +55,87 @@ object KLog {
     private var globalTag: String = TAG_DEFAULT
     private var isShowLog = true
 
-    /*
-     * init
-     * */
-    @JvmStatic
     fun init(isShowLog: Boolean) {
         KLog.isShowLog = isShowLog
-        File.separator
     }
 
-    @JvmStatic
     fun init(isShowLog: Boolean, tag: String?) {
         KLog.isShowLog = isShowLog
         tag?.run { globalTag = this }
     }
 
-    @JvmStatic
     fun v(msg: Any) {
         printLog(V, null, msg)
     }
 
-    @JvmStatic
     fun v(tag: String, objects: Any) {
         printLog(V, tag, objects)
     }
 
-    @JvmStatic
     fun d(msg: Any) {
         printLog(D, null, msg)
     }
 
-    @JvmStatic
     fun d(tag: String, objects: Any) {
         printLog(D, tag, objects)
     }
 
-    @JvmStatic
     fun i(msg: Any) {
         printLog(I, null, msg)
     }
 
-    @JvmStatic
     fun i(tag: String, objects: Any) {
         printLog(I, tag, objects)
     }
 
-    @JvmStatic
     fun w(msg: Any) {
         printLog(W, null, msg)
     }
 
-    @JvmStatic
     fun w(tag: String, objects: Any) {
         printLog(W, tag, objects)
     }
 
-    @JvmStatic
     fun e(msg: Any) {
         printLog(E, null, msg)
     }
 
-    @JvmStatic
     fun e(tag: String, objects: Any) {
         printLog(E, tag, objects)
     }
 
-    @JvmStatic
     fun a(msg: Any) {
         printLog(A, null, msg)
     }
 
-    @JvmStatic
     fun a(tag: String, objects: Any) {
         printLog(A, tag, objects)
     }
 
-    @JvmStatic
     fun json(level: Int, jsonFormat: String) {
         printLog(JSON + level, null, jsonFormat)
     }
 
-    @JvmStatic
     fun json(level: Int, tag: String, jsonFormat: String) {
         printLog(JSON + level, tag, jsonFormat)
     }
 
-    @JvmStatic
     fun xml(level: Int, xml: String) {
         printLog(XML + level, null, xml)
     }
 
-    @JvmStatic
     fun xml(level: Int, tag: String, xml: String) {
         printLog(XML + level, tag, xml)
     }
 
-    @JvmStatic
     fun map(level: Int, map: Map<String, Any>) {
         printLog(JSON + level, null, map)
     }
 
-    @JvmStatic
     fun mapString(level: Int, tag: String, map: Map<String, String>) {
         printLog(JSON + level, tag, map)
     }
 
-    @JvmStatic
     fun map(level: Int, tag: String, map: Map<String, Any>?) {
         if (map == null || map.isEmpty()) {
             printLog(level, tag, null)
@@ -178,27 +153,22 @@ object KLog {
         printLog(JSON + level, tag, jsonObject.toString())
     }
 
-    @JvmStatic
     fun file(targetDirectory: File, msg: Any) {
         printFile(null, targetDirectory, null, msg)
     }
 
-    @JvmStatic
     fun file(tag: String, targetDirectory: File, msg: Any) {
         printFile(tag, targetDirectory, null, msg)
     }
 
-    @JvmStatic
     fun file(tag: String, targetDirectory: File, fileName: String, msg: Any) {
         printFile(tag, targetDirectory, fileName, msg)
     }
 
-    @JvmStatic
     fun debug(msg: Any) {
         printDebug(null, msg)
     }
 
-    @JvmStatic
     fun debug(tag: String, objects: Any) {
         printDebug(tag, objects)
     }
@@ -394,8 +364,7 @@ object KLog {
      * xml
      * */
     private fun printXml(type: Int, tag: String, xml: String, headString: String) {
-        var nXml = xml
-        nXml = if (TextUtils.isEmpty(nXml)) NULL_TIPS else formatXML(nXml)
+        val nXml = if (TextUtils.isEmpty(xml)) NULL_TIPS else formatXML(xml)
         printJsonXml(type - XML, tag, nXml, headString)
     }
 
