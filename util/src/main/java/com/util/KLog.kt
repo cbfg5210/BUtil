@@ -67,10 +67,7 @@ object KLog {
     @JvmStatic
     fun init(isShowLog: Boolean, tag: String?) {
         KLog.isShowLog = isShowLog
-
-        tag?.run {
-            globalTag = this
-        }
+        tag?.run { globalTag = this }
     }
 
     @JvmStatic
