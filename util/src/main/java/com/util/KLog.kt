@@ -39,7 +39,7 @@ object KLog {
 
     private const val MAX_LENGTH = 4000
     private const val JSON_INDENT = 4
-    private const val STACK_TRACE_INDEX_5 = 5
+    private const val STACK_TRACE_INDEX = 5
 
     const val V = 0x1
     const val D = 0x2
@@ -138,14 +138,9 @@ object KLog {
             return
         }
         val jsonObject = JSONObject()
-        try {
-            for ((key, value) in map) {
-                jsonObject.put(key, value.toString())
-            }
-        } catch (e: JSONException) {
-            e.printStackTrace()
+        for ((key, value) in map) {
+            jsonObject.put(key, value.toString())
         }
-
         printLog(JSON + level, tag, jsonObject.toString())
     }
 
@@ -172,8 +167,8 @@ object KLog {
     /*
      * log内容处理
      * */
-    private fun wrapperContent(stackTraceIndex: Int, tagStr: String?, objects: Any?): Array<String> {
-        val targetElement = Thread.currentThread().stackTrace[stackTraceIndex]
+    private fun wrapperContent(tagStr: String?, objects: Any?): Array<String> {
+        val targetElement = Thread.currentThread().stackTrace[STACK_TRACE_INDEX]
         val className = targetElement.fileName
         val methodName = targetElement.methodName
         var lineNumber = targetElement.lineNumber
@@ -182,7 +177,7 @@ object KLog {
             lineNumber = 0
         }
 
-        val tag = if (TextUtils.isEmpty(tagStr)) globalTag else tagStr!!
+        val tag = tagStr ?: globalTag
         val msg = objects?.toString() ?: NULL_TIPS
         val headString = "[($className:$lineNumber)#$methodName] "
 
@@ -197,7 +192,7 @@ object KLog {
             return
         }
 
-        val contents = wrapperContent(STACK_TRACE_INDEX_5, tagStr, objects)
+        val contents = wrapperContent(tagStr, objects)
         val tag = contents[0]
         val msg = contents[1]
         val headString = contents[2]
@@ -210,7 +205,7 @@ object KLog {
     }
 
     private fun printDebug(tagStr: String?, objects: Any) {
-        val contents = wrapperContent(STACK_TRACE_INDEX_5, tagStr, objects)
+        val contents = wrapperContent(tagStr, objects)
         val tag = contents[0]
         val msg = contents[1]
         val headString = contents[2]
@@ -285,7 +280,7 @@ object KLog {
         if (!isShowLog) {
             return
         }
-        val contents = wrapperContent(STACK_TRACE_INDEX_5, tagStr, objectMsg)
+        val contents = wrapperContent(tagStr, objectMsg)
         val tag = contents[0]
         val msg = contents[1]
         val headString = contents[2]
