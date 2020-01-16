@@ -55,13 +55,9 @@ object KLog {
     private var globalTag: String = TAG_DEFAULT
     private var isShowLog = true
 
-    fun init(isShowLog: Boolean) {
+    fun init(isShowLog: Boolean, tag: String = TAG_DEFAULT) {
         KLog.isShowLog = isShowLog
-    }
-
-    fun init(isShowLog: Boolean, tag: String?) {
-        KLog.isShowLog = isShowLog
-        tag?.run { globalTag = this }
+        globalTag = tag
     }
 
     fun v(msg: Any) {
