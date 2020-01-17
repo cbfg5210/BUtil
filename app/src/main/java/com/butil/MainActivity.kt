@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        KLog.e("abc")
+        //KLog.e("abc")
+        //KLog.json(KLog.E, "{\"a\":\"aa\"}")
+        val map = hashMapOf("a" to "aa", "b" to "bb")
+        KLog.map(KLog.E, map)
     }
 }
