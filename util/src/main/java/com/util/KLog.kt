@@ -49,62 +49,63 @@ object KLog {
     const val A = 0x6
 
     private const val JSON = 0x7
+
     //XML=JSON+E
     private const val XML = 0xC
 
     private var globalTag: String = TAG_DEFAULT
-    private var isShowLog = true
+    private var isShowLog = false
 
     fun init(isShowLog: Boolean, tag: String = TAG_DEFAULT) {
-        KLog.isShowLog = isShowLog
-        globalTag = tag
+        this.isShowLog = isShowLog
+        this.globalTag = tag
     }
 
-    fun v(msg: Any) {
+    fun v(msg: Any?) {
         printLog(V, null, msg)
     }
 
-    fun v(tag: String, objects: Any) {
+    fun v(tag: String, objects: Any?) {
         printLog(V, tag, objects)
     }
 
-    fun d(msg: Any) {
+    fun d(msg: Any?) {
         printLog(D, null, msg)
     }
 
-    fun d(tag: String, objects: Any) {
+    fun d(tag: String, objects: Any?) {
         printLog(D, tag, objects)
     }
 
-    fun i(msg: Any) {
+    fun i(msg: Any?) {
         printLog(I, null, msg)
     }
 
-    fun i(tag: String, objects: Any) {
+    fun i(tag: String, objects: Any?) {
         printLog(I, tag, objects)
     }
 
-    fun w(msg: Any) {
+    fun w(msg: Any?) {
         printLog(W, null, msg)
     }
 
-    fun w(tag: String, objects: Any) {
+    fun w(tag: String, objects: Any?) {
         printLog(W, tag, objects)
     }
 
-    fun e(msg: Any) {
+    fun e(msg: Any?) {
         printLog(E, null, msg)
     }
 
-    fun e(tag: String, objects: Any) {
+    fun e(tag: String, objects: Any?) {
         printLog(E, tag, objects)
     }
 
-    fun a(msg: Any) {
+    fun a(msg: Any?) {
         printLog(A, null, msg)
     }
 
-    fun a(tag: String, objects: Any) {
+    fun a(tag: String, objects: Any?) {
         printLog(A, tag, objects)
     }
 
@@ -133,7 +134,7 @@ object KLog {
     }
 
     fun map(level: Int, tag: String, map: Map<String, Any>?) {
-        if (map == null || map.isEmpty()) {
+        if (map.isNullOrEmpty()) {
             printLog(level, tag, null)
             return
         }
