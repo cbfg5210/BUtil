@@ -18,7 +18,7 @@ object ToastUtils {
         Toast.makeText(AppHolder.app(), "", Toast.LENGTH_SHORT)
     }
 
-    fun message(msg: String): ToastUtils {
+    fun message(msg: String?): ToastUtils {
         toast.setText(msg)
         return this
     }
